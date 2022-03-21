@@ -55,7 +55,7 @@ INSERT INTO Student (StudentName, Address, Status, ClassId)
 VALUES ('Hoa', 'Hai phong', 1, 1);
 INSERT INTO Student (StudentName, Address, Phone, Status, ClassId)
 VALUES ('Manh', 'HCM', '0123123123', 0, 2);
-INSERT INTO Subject
+INSERT INTO Subject(subid, subname, credit, status)
 VALUES (1, 'CF', 5, 1),
        (2, 'C', 6, 1),
        (3, 'HDJ', 5, 1),
@@ -67,4 +67,9 @@ VALUES (1, 1, 8, 1),
 SELECT *FROM Class WHERE Status=true;
 SELECT *FROM subject WHERE Credit <10;
 SELECT S.StudentID,S.StudentName,C.ClassName FROM Student S join Class C on C.ClassID = S.ClassID where ClassName='A1';
-SELECT S.StudentID,S.StudentName,S2.SubName,Mark FROM Student S JOIN Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID WHERE S2.SubName='CF'
+SELECT S.StudentID,S.StudentName,S2.SubName,Mark FROM Student S JOIN Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID WHERE S2.SubName='CF';
+SELECT *FROM Student where StudentName like 'h%';
+SELECT *FROM Class where MONTH(StartDate) ='12';
+SELECT *FROM subject where Credit between 3 and 5;
+UPDATE Student SET ClassID =2 WHERE StudentName ='Hung';
+SELECT S.StudentName,SubName,M.Mark FROM Student S join Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID ORDER BY Mark;
