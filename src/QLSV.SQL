@@ -64,3 +64,7 @@ INSERT INTO Mark (SubId, StudentId, Mark, ExamTimes)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
+SELECT *FROM Class WHERE Status=true;
+SELECT *FROM subject WHERE Credit <10;
+SELECT S.StudentID,S.StudentName,C.ClassName FROM Student S join Class C on C.ClassID = S.ClassID where ClassName='A1';
+SELECT S.StudentID,S.StudentName,S2.SubName,Mark FROM Student S JOIN Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID WHERE S2.SubName='CF'
