@@ -110,3 +110,8 @@ FROM Student S join Mark M on S.StudentId = M.StudentId
 GROUP BY S.StudentId, S.StudentName
 HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
 
+SELECT SubID ,SubName,MAX(Credit),Status FROM Subject;
+
+SELECT  S.SubID ,S.SubName,S.Credit,S.Status,MAX(M.Mark)FROM Subject S join Mark M on S.SubID = M.SubID;
+
+SELECT S.StudentID,S.StudentName,S.Address,S.Phone,S.Status,S.ClassID ,AVG(M.Mark) FROM Student S JOIN Mark M on S.StudentID = M.StudentId GROUP BY S.StudentID ORDER BY AVG(Mark);
