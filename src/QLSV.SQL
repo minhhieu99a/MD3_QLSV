@@ -64,12 +64,49 @@ INSERT INTO Mark (SubId, StudentId, Mark, ExamTimes)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
-SELECT *FROM Class WHERE Status=true;
-SELECT *FROM subject WHERE Credit <10;
-SELECT S.StudentID,S.StudentName,C.ClassName FROM Student S join Class C on C.ClassID = S.ClassID where ClassName='A1';
-SELECT S.StudentID,S.StudentName,S2.SubName,Mark FROM Student S JOIN Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID WHERE S2.SubName='CF';
-SELECT *FROM Student where StudentName like 'h%';
-SELECT *FROM Class where MONTH(StartDate) ='12';
-SELECT *FROM subject where Credit between 3 and 5;
-UPDATE Student SET ClassID =2 WHERE StudentName ='Hung';
-SELECT S.StudentName,SubName,M.Mark FROM Student S join Mark M on S.StudentID = M.StudentId JOIN Subject S2 on M.SubID = S2.SubID ORDER BY Mark;
+SELECT *
+FROM Class
+WHERE Status = true;
+SELECT *
+FROM subject
+WHERE Credit < 10;
+SELECT S.StudentID, S.StudentName, C.ClassName
+FROM Student S
+         join Class C on C.ClassID = S.ClassID
+where ClassName = 'A1';
+SELECT S.StudentID, S.StudentName, S2.SubName, Mark
+FROM Student S
+         JOIN Mark M on S.StudentID = M.StudentId
+         JOIN Subject S2 on M.SubID = S2.SubID
+WHERE S2.SubName = 'CF';
+SELECT *
+FROM Student
+where StudentName like 'h%';
+SELECT *
+FROM Class
+where MONTH(StartDate) = '12';
+SELECT *
+FROM subject
+where Credit between 3 and 5;
+UPDATE Student
+SET ClassID =2
+WHERE StudentName = 'Hung';
+SELECT S.StudentName, SubName, M.Mark
+FROM Student S
+         join Mark M on S.StudentID = M.StudentId
+         JOIN Subject S2 on M.SubID = S2.SubID
+ORDER BY Mark;
+
+SELECT Address, count(StudentID)
+FROM Student
+GROUP BY Address;
+SELECT S.StudentID, S.StudentName, AVG(M.Mark)
+FROM Student S
+         join Mark M on S.StudentID = M.StudentId
+GROUP BY S.StudentID, S.StudentName;
+SELECT S.StudentID,S.StudentName,AVG(M.Mark)from Student S join Mark M on S.StudentID = M.StudentId GROUP BY S.StudentID, S.StudentName HAVING AVG(M.Mark)>15;
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
+
